@@ -6,4 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-swdq
+
+Route::get('test' , function () {
+    return view('dashboard.welcome');
+});
