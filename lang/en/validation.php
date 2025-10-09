@@ -194,6 +194,9 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name.ar' => 'Arabic Name',
+        'name.en' => 'English Name',
+    ],
 
 ];
