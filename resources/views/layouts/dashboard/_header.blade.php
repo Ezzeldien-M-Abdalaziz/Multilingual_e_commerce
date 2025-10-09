@@ -168,14 +168,34 @@
                 <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="ft-power"></i> Logout</a>
               </div>
             </li>
-            <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
+
+            {{-- selector language --}}
+            {{-- <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
-              <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#"><i class="flag-icon flag-icon-gb"></i> English</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+                <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-gb"></i> English</a>
                 <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> French</a>
                 <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> Chinese</a>
                 <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> German</a>
               </div>
-            </li>
+            </li> --}}
+
+            <li class="dropdown dropdown-language nav-item">
+              <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-gb"></i><span class="selected-language"></span></a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                
+                      <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        <i class="flag-icon @if($localeCode == 'en') flag-icon-gb @else flag-icon-eg @endif"></i> {{ $properties['native'] }}
+                      </a>
+              @endforeach
+            </div>
+          </li>
+
+
+
+
             <li class="dropdown dropdown-notification nav-item">
               <a class="nav-link nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-bell"></i>
                 <span class="badge badge-pill badge-default badge-danger badge-default badge-up badge-glow">5</span>
