@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('shipping_governorates', function (Blueprint $table) {
             $table->id();
+            $table->decimal('price',10,2);
+            $table->foreignId('governorate_id')->constrained('governorates')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('shipping_cities');
     }
 };

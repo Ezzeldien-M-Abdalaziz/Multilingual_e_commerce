@@ -13,10 +13,28 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('small_desc');
+            $table->string('desc');
+            $table->boolean('status')->default(value: 1);
+            $table->string('sku');
+            $table->date('available_for')->nullable();
+            $table->decimal('price',8,3);
+            $table->decimal('discount');
+            $table->date('start_discount')->nullable();
+            $table->date('end_discount')->nullable();
+
+            $table->boolean('manage_stock')->default(value: 0);
+            $table->integer('quantity');
+            $table->integer('available_in_stock')->default(value:1);
+            $table->integer('views');
+            
+            $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      */
