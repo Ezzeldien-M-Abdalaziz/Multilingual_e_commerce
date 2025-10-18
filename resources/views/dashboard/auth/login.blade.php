@@ -1,4 +1,4 @@
-@extends('layouts.blade.auth')
+@extends('layouts.dashboard.auth')
 @section('title')
 Login
 @endsection
