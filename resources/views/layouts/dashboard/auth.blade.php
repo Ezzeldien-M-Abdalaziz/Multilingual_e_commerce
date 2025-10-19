@@ -56,7 +56,18 @@ data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
       <div class="navbar-container">
         <div class="collapse navbar-collapse justify-content-end" id="navbar-mobile">
           <ul class="nav navbar-nav">
-            <li class="nav-item"><a class="nav-link mr-2 nav-link-label" href="index.html"><i class="ficon ft-arrow-left"></i></a></li>
+             <li class="dropdown dropdown-language nav-item">
+              <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-@if(config('app.locale') == 'ar') flag-icon-eg @else flag-icon-gb @endif"></i><span class="selected-language"></span></a>
+              <div class="dropdown-menu" aria-labelledby="dropdown-flag">
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                
+                      <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        <i class="flag-icon @if($localeCode == 'en') flag-icon-gb @else flag-icon-eg @endif"></i> {{ $properties['native'] }}
+                      </a>
+              @endforeach
+            </div>
+          </li>
             <li class="dropdown nav-item">
               <a class="nav-link mr-2 nav-link-label" href="#" data-toggle="dropdown"><i class="ficon ft-settings"></i></a>
             </li>
