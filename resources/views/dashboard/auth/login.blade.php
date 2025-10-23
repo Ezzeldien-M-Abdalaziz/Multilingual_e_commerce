@@ -43,7 +43,7 @@ Login
                         <div class="col-md-6 col-12 text-center text-md-left">
                           <fieldset>
                             <input type="checkbox" id="remember-me" class="chk-remember">
-                            <label for="remember-me"> Remember Me</label>
+                            <label for="remember-me"> {{ __('auth.remember_me') }}</label>
                           </fieldset>
                         </div>
                         <div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">Forgot Password?</a></div>
@@ -56,7 +56,6 @@ Login
                   <p class="card-subtitle line-on-side text-muted text-center font-small-3 mx-2 my-1">
                     <span>New to Modern ?</span>
                   </p>
-                  <a href="register-advanced.html" class="btn btn-info btn-block btn-lg mt-3"><i class="ft-user"></i> Register</a>
                 </div>
               </div>
             </div>
