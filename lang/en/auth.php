@@ -17,7 +17,7 @@ return [
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'remember_me'=>'Remember Me',
-    'forget_password'=>'  Forgot Password',
+    'forgot_password'=>'  Forgot Password',
     'login'=>'Login',
     'email'=>'Email ',
     'password'=>'Password',
@@ -25,5 +25,6 @@ return [
     'logout'=>'Logout',
     'name'=>'Name',
     'not_match'=>'Crediensials dose not match',
-
+    'Your_Username' => 'Your Username',
+    'Enter_Password' => 'Enter Password'
 ];

@@ -12,7 +12,6 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
         then: function  (){     //register dashboard.php routes
             Route::middleware('web')
-            ->name('dashboard.')
             ->group(base_path('routes/dashboard.php'));
         }
 
