@@ -19,7 +19,6 @@ Route::group(
         ################### AUTH ROUTES ###################
         Route::get('login' , [AuthController::class , 'showLoginForm'])->name('login');
         Route::post('login' , [AuthController::class , 'login'])->name('login.post');
-
 });
 
 
