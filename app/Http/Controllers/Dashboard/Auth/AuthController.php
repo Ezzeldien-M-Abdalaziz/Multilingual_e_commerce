@@ -4,11 +4,19 @@ namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class AuthController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('guest:admin', except: ['logout']),
+        ];
+    }
+
     public function showLoginForm(){
         return view('dashboard.auth.login');
     }
@@ -26,4 +34,6 @@ class AuthController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('dashboard.login');
     }
+
+
 }

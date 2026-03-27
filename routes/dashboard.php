@@ -17,9 +17,14 @@ Route::group(
         })->name('index');
 
         ################### AUTH ROUTES ###################
-        Route::get('login' , [AuthController::class , 'showLoginForm'])->name('login');
-        Route::post('login' , [AuthController::class , 'login'])->name('login.post');
-        Route::post('logout' , [AuthController::class , 'logout'])->name('logout');
+        Route::middleware('guest:admin')->group(function () {
+            Route::get('login' , [AuthController::class , 'showLoginForm'])->name('login');
+            Route::post('login' , [AuthController::class , 'login'])->name('login.post');
+        });
+
+        Route::post('logout' , [AuthController::class , 'logout'])
+            ->middleware('auth:admin')
+            ->name('logout');
 
         ################### protected routes ###################
         Route::group(['middleware' => 'auth:admin'], function () {
