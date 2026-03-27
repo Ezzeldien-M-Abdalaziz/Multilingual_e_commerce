@@ -61,7 +61,7 @@ data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
               aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-@if(config('app.locale') == 'ar') flag-icon-eg @else flag-icon-gb @endif"></i><span class="selected-language"></span></a>
               <div class="dropdown-menu" aria-labelledby="dropdown-flag">
               @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                
+
                       <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                         <i class="flag-icon @if($localeCode == 'en') flag-icon-gb @else flag-icon-eg @endif"></i> {{ $properties['native'] }}
                       </a>
@@ -102,5 +102,8 @@ data-open="click" data-menu="vertical-menu-modern" data-col="1-column">
   <!-- BEGIN PAGE LEVEL JS-->
   <script src="{{ asset('assets/dashboard') }}/js/scripts/forms/form-login-register.js" type="text/javascript"></script>
   <!-- END PAGE LEVEL JS-->
+
+  <!-- display captcha -->
+    {!! NoCaptcha::renderJs() !!}
 </body>
 </html>

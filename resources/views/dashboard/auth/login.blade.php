@@ -44,6 +44,17 @@ Login
                         <div class="form-control-position">
                           <i class="la la-key"></i>
                         </div>
+
+                          <fieldset class="form-group position-relative has-icon-left">
+                              <br>
+                              <div style="display: flex; justify-content: center;">
+                                    {!! NoCaptcha::display() !!}
+                                  @error('g-recaptcha-response')
+                                    <span class="text-danger">{{ $message }}</span>
+                                  @enderror
+                              </div>
+
+
                         <div class="help-block font-small-3"></div>
                       </fieldset>
                       <div class="form-group row">
