@@ -25,6 +25,6 @@ return [
     'name'=>'الاسم',
     'not_match'=>'بيانات الاعتماد غير متطابقه' ,
     'Your_Username' => 'اسم المستخدم',
-    'Enter_Password' => 'الباسورد'
+    'Enter_Password' => 'الباسورد',
 
 ];

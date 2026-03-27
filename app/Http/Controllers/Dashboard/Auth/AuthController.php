@@ -16,9 +16,9 @@ class AuthController extends Controller
     public function login(CreateAdminRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard.index');
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended(route('dashboard.welcome'));
         }
-        return redirect()->route('dashboard.login')->with('error', 'Invalid credentials');
+        return redirect()->back()->withErrors('email', __('auth.not_match'));
     }
 }
