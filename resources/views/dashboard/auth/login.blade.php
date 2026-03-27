@@ -49,10 +49,10 @@ Login
                               <br>
                               <div style="display: flex; justify-content: center;">
                                     {!! NoCaptcha::display() !!}
-                                  @error('g-recaptcha-response')
-                                    <span class="text-danger">{{ $message }}</span>
-                                  @enderror
                               </div>
+                              @error('g-recaptcha-response')
+                              <span class="text-danger">{{ $message }}</span>
+                              @enderror
 
 
                         <div class="help-block font-small-3"></div>
