@@ -16,9 +16,14 @@ class AuthController extends Controller
     public function login(CreateAdminRequest $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::guard('admin')->attempt($credentials)) {
+        if (Auth::guard('admin')->attempt($credentials , true)) {
             return redirect()->intended(route('dashboard.welcome'));
         }
         return redirect()->back()->withErrors('email', __('auth.not_match'));
+    }
+
+    public function logout(){
+        Auth::guard('admin')->logout();
+        return redirect()->route('dashboard.login');
     }
 }
