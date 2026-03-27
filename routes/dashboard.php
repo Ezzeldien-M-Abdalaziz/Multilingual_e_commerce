@@ -3,7 +3,7 @@
 use App\Http\Controllers\Dashboard\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
+use \App\Http\Controllers\Dashboard\welcomeController;
 
 Route::group(
     [
@@ -19,6 +19,16 @@ Route::group(
         ################### AUTH ROUTES ###################
         Route::get('login' , [AuthController::class , 'showLoginForm'])->name('login');
         Route::post('login' , [AuthController::class , 'login'])->name('login.post');
+
+
+        ################### protected routes ###################
+        Route::group(['middleware' => 'auth:admin'], function () {
+
+            ################### welcome Routes ###################
+            Route::get('welcome' , [welcomeController::class , 'index'])->name('welcome');
+
+        });
+
 });
 
 
