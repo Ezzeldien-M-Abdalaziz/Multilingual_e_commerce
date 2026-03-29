@@ -27,7 +27,7 @@ Route::group(
         Route::group(['prefix' => 'password' , 'as' => 'password.'] , function(){
 
             Route::controller(ForgetPasswordController::class)->group(function () {
-                Route::get('email' , 'showForgetPasswordForm')->name('email');
+                Route::get('email' , 'showEmailForm')->name('email');
                 Route::post('email' , 'sendOtp')->name('email.post');
                 Route::get('verify/{email}' , 'showOtpForm')->name('verify');
                 Route::post('verify/' , 'verifyOtp')->name('verify.post');
