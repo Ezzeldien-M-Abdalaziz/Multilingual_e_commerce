@@ -64,7 +64,7 @@ Login
                             <label for="remember-me"> {{__('auth.remember_me') }}</label>
                           </fieldset>
                         </div>
-                        <div class="col-md-6 col-12 text-center text-md-right"><a href="recover-password.html" class="card-link">{{__('auth.forgot_password') }}</a></div>
+                        <div class="col-md-6 col-12 text-center text-md-right"><a href="{{route('dashboard.password.email')}}" class="card-link">{{__('auth.forgot_password') }}</a></div>
                       </div>
                       <button type="submit" class="btn btn-danger btn-block btn-lg"><i class="ft-unlock"></i> {{ __('auth.login') }}</button>
                     </form>
