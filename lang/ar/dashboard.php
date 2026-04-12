@@ -11,6 +11,9 @@ return [
     'role_permissions'=>'صلاحيات الصلاحية',
     'role'=>'صلاحية',
 
+    'otp_sent' => 'تم ارسال الكود',
+    'otp_verified' => 'تم التحقق من الكود',
+    'invalid_otp'=>'الكود غير صحيح',
     'success_msg'=>'تمت العملية بنجاح',
     'error_msg'=>'هناك خطأ ما',
     'add'=>'اضافة',
@@ -171,7 +174,8 @@ return [
     'governorates'=>'المحافظات',
     'num_of_orders'=>'عدد الطلبات',
     'email_verified_at'=>'تاريخ التحقق من البريد الالكتروني',
-
+    'email_not_found'=>'البريد الالكتروني غير موجود',
+    'password_reset_success'=>'تمت اعادة تعيين كلمة المرور بنجاح',
     'contacts'=>'اداره التواصل',
 
 

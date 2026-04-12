@@ -23,7 +23,7 @@
                                 <div class="card-content">
                                     <div class="card-body">
 
-{{--                                        @include('dashboard.includes.alert-danger')--}}
+                                        @include('dashboard.includes.alert-danger')
 
                                         <form action="{{ route('dashboard.password.verify.post') }}" method="POST" class="form-horizontal" action="login-simple.html" >
                                             @csrf
