@@ -29,12 +29,11 @@ class ForgetPasswordController extends Controller
 
         $admin = Admin::where('email' , $request->email)->first();
         if(!$admin){
-            Session::flash('error' , __('dashboard.email_not_found'));
-            return redirect()->back();
+            return redirect()->back()->withErrors(['email' => __('dashboard.email_not_found')]);
         }
 
         $admin->notify(new SendOtpNotify());
-        return redirect()->route('dashboard.password.verify' , $request->email)->with('success' , __('dashboard.otp_sent'));
+        return redirect()->route('dashboard.password.verify', $request->email)->withErrors(['success' => __('dashboard.otp_sent')]);
     }
 
     public function showOtpForm($email){
@@ -48,10 +47,10 @@ class ForgetPasswordController extends Controller
             'code' => 'required'
         ]);
         $otp = $this->otp2->validate($request->email , $request->code);
-        if($otp->status == false){
-            return redirect()->back()->with('error' , __('dashboard.invalid_otp'));
+        if(!$otp->status){
+            return redirect()->back()->withErrors(['error' => __('dashboard.invalid_otp')]);
         }
-        return redirect()->route('dashboard.password.reset' , $request->email)->with('success' , __('dashboard.otp_verified'));
+        return redirect()->route('dashboard.password.reset', $request->email)->withErrors(['success' => __('dashboard.otp_verified')]);
 
     }
 
