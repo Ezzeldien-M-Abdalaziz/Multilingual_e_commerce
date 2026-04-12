@@ -47,6 +47,10 @@ class ForgetPasswordController extends Controller
             'otp' => 'required'
         ]);
         $otp = $this->otp2->validate($request->email , $request->otp);
+        if($otp->status == false){
+            return redirect()->back()->with('error' , __('dashboard.invalid_otp'));
+        }
+        return redirect()->route('dashboard.password.reset' , $request->email)->with('success' , __('dashboard.otp_verified'));
 
     }
 
