@@ -42,11 +42,12 @@ class ForgetPasswordController extends Controller
     }
 
     public function verifyOtp(Request $request){
+//        return $request->all();
         $request->validate([
             'email' => 'required|email|exists:admins,email',
-            'otp' => 'required'
+            'code' => 'required'
         ]);
-        $otp = $this->otp2->validate($request->email , $request->otp);
+        $otp = $this->otp2->validate($request->email , $request->code);
         if($otp->status == false){
             return redirect()->back()->with('error' , __('dashboard.invalid_otp'));
         }
