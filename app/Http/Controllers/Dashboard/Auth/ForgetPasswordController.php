@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
+use App\Notifications\SendOtpNotify;
 use Ichtrojan\Otp\Otp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -36,6 +37,33 @@ class ForgetPasswordController extends Controller
         return redirect()->route('dashboard.password.verify' , $request->email)->with('success' , __('dashboard.otp_sent'));
     }
 
+    public function showOtpForm($email){
+        return view('dashboard.auth.password.confirm' , compact('email'));
+    }
+
+    public function verifyOtp(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:admins,email',
+            'otp' => 'required'
+        ]);
+        $otp = $this->otp2->validate($request->email , $request->otp);
+
+    }
+
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
