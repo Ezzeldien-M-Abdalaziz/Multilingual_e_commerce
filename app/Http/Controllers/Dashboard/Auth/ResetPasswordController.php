@@ -3,27 +3,29 @@
 namespace App\Http\Controllers\Dashboard\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Models\Admin;
-use Illuminate\Http\Request;
+use App\Services\Auth\PasswordService;
 
 class ResetPasswordController extends Controller
 {
+    protected $passwordService;
+    public function __construct(PasswordService $passwordService)
+    {
+        $this->passwordService = $passwordService;
+    }
+
     public function showResetForm($email){
         return view('dashboard.auth.password.reset' , compact('email'));
     }
 
-    public function resetPassword(Request $request){
-        $request->validate([
-            'email' => 'required|email|exists:admins,email',
-            'password' => 'required', 'confirmed' ,
-            'password_confirmation' => 'required|same:password'
-        ]);
-        $admin = Admin::where('email' , $request->email)->first();
+    public function resetPassword(ResetPasswordRequest $request){
+
+        $admin = $this->passwordService->resetPassword($request->email , $request->password);
         if (!$admin){
             return redirect()->back()->with('error' , __('dashboard.email_not_found'));
         }
-        $admin->password = bcrypt($request->password);
-        $admin->save();
+        //redirect to login
         return redirect()->route('dashboard.login')->with('success' , __('dashboard.password_reset_success'));
 
     }

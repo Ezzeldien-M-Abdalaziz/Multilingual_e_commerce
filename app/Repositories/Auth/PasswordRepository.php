@@ -16,7 +16,7 @@ class PasswordRepository
         $this->otp2 = new Otp();
     }
 
-    public function sendOtp($email){
+    public function getAdminByEmail($email){
         $admin = Admin::where('email' , $email)->first();
         return $admin;
     }
@@ -24,6 +24,15 @@ class PasswordRepository
     public function verifyOtp($email , $code){
         $otp = $this->otp2->validate($email , $code);   //validate is check if the code is valid in the db
         return  $otp;
+    }
+
+    public function resetPassword($email , $newPassword)
+    {
+        $admin = $this->getAdminByEmail($email);
+        $admin = $admin->update([
+            'password' => bcrypt($newPassword)
+        ]);
+        return $admin;
     }
 
 

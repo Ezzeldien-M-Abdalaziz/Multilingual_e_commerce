@@ -16,8 +16,8 @@ class PasswordService
         $this->passwordRepository = new PasswordRepository();
     }
 
-    public function sendOtp($email){
-        $admin = $this->passwordRepository->sendOtp($email);
+    public function getAdminByEmail($email){
+        $admin = $this->passwordRepository->getAdminByEmail($email);
         if(!$admin){
             return false;
         }
@@ -28,5 +28,9 @@ class PasswordService
     public function verifyOtp($email , $code){
         $otp = $this->passwordRepository->verifyOtp($email , $code);
         return $otp->status;
+    }
+
+    public function resetPassword($email , $newPassword){
+       return $this->passwordRepository->resetPassword($email , $newPassword);
     }
 }

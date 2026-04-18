@@ -28,7 +28,7 @@ class ForgetPasswordController extends Controller
 
     public function sendOtp(ForgetPasswordRequest $request){
 
-        $admin = $this->passwordService->sendOtp($request->email);
+        $admin = $this->passwordService->getAdminByEmail($request->email);
         if(!$admin){
             return redirect()->back()->withErrors(['email' => __('dashboard.email_not_found')]);
         }
